@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.mycompany.instagramApi.entity.InstagramLog;
+import br.com.mycompany.instagramApi.entity.InstagramUser;
 import br.com.mycompany.instagramApi.service.InstagramLogService;
 
 @Controller
 @RequestMapping("/twitterLog")
-public class InstagramLogController extends BaseController<InstagramLog, InstagramLogService> {
+public class InstagramLogController extends BaseController<InstagramUser, InstagramLogService> {
 	
 	@Autowired
 	InstagramLogService service;
 	
-	InstagramLog entity;
+	InstagramUser entity;
 
 	@Override
 	public InstagramLogService getService() {
@@ -32,12 +32,12 @@ public class InstagramLogController extends BaseController<InstagramLog, Instagr
 	}
 
 	@Override
-	public InstagramLog getEntity() {
+	public InstagramUser getEntity() {
 		return entity;
 	}
 	
 	@Override
-	public void setEntity(InstagramLog entity) {
+	public void setEntity(InstagramUser entity) {
 		this.entity = entity;
 	}
 }

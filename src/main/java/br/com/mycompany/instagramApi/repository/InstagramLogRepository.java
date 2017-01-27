@@ -7,12 +7,12 @@ package br.com.mycompany.instagramApi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.mycompany.instagramApi.entity.InstagramLog;
+import br.com.mycompany.instagramApi.entity.InstagramUser;
 
 /**
  * @author Marcel
  *
  */
-public interface InstagramLogRepository extends JpaRepository<InstagramLog, Long> {
+public interface InstagramLogRepository extends JpaRepository<InstagramUser, Long> {
 
 }

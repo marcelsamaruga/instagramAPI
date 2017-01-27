@@ -11,6 +11,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.Client;
@@ -20,6 +23,12 @@ import com.sun.jersey.api.client.WebResource;
 public abstract class BaseResource {
 	
 	protected final String APPLICATION_JSON = "application/json";
+	
+	@Value(value = "${access_token}")
+	private String accessToken;
+	
+	@Autowired
+	private Gson gson;
 
 	/**
 	 * @author marcel.costa
@@ -79,7 +88,6 @@ public abstract class BaseResource {
 	protected Response responseSuccessASJson(final Object entity) {
 		try {			
 			// create GSon converter
-			Gson gson = new GsonBuilder().create();
 			return responseSuccess( gson.toJson(entity) );
 	    	
 		} catch (Exception e) {
@@ -98,6 +106,26 @@ public abstract class BaseResource {
 		WebResource webResource = client.resource( URL );
 		
 		ClientResponse response = webResource.accept( contentType ).get(ClientResponse.class);
+
+		if (response.getStatus() != 200) {
+		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+		}
+		
+		return response.getEntity(String.class);
+	}
+	
+	
+	/**
+	 * @author marcel.costa
+	 * This function invokes a URL as a json content type and returns its body  
+	 * return String
+	 * */
+	protected String getUrlAsJsonContentType(String URL) {
+		Client client = Client.create();
+		
+		WebResource webResource = client.resource( URL );
+		
+		ClientResponse response = webResource.accept( APPLICATION_JSON ).get(ClientResponse.class);
 
 		if (response.getStatus() != 200) {
 		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
@@ -128,8 +156,7 @@ public abstract class BaseResource {
 	 * @return String
 	 */
 	protected String getAccessToken() {
-		String accessToken = "219833214.b664516.e07cda149b1249479e60e8e89c5f2b81";
-		return accessToken;
+		return this.accessToken;
 	}
 	
 }

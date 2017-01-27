@@ -18,6 +18,9 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 @SpringBootApplication
 @ComponentScan( basePackages = {"br.com.mycompany.instagramApi"} )
 @EnableAutoConfiguration
@@ -33,4 +36,12 @@ public class Application {
 	    return tomcat;
 	}
 	
+	@Bean
+	public Gson gsonBuilder() { 
+		return new GsonBuilder()
+	             .disableHtmlEscaping()
+	             .setPrettyPrinting()
+	             .serializeNulls()
+	             .create();
+	}
 }
