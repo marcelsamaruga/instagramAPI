@@ -12,6 +12,17 @@ public class InstagramUser extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -3985428490705878499L;
 
+	public InstagramUser(){}
+	
+	public InstagramUser(String username, String fullname, String bio, Long instagramId, String profilePicture) {
+		super();
+		this.username = username;
+		this.fullname = fullname;
+		this.bio = bio;
+		this.instagramId = instagramId;
+		this.profilePicture = profilePicture;
+	}
+
 	@Column(name="username")
 	private String username;
 	
@@ -21,8 +32,8 @@ public class InstagramUser extends BaseEntity implements Serializable {
 	@Column(name="bio")
 	private String bio;
 	
-	@Column(name="instragram_id")
-	private Long instragramId;
+	@Column(name="instagram_id")
+	private Long instagramId;
 	
 	@Column(name="profile_picture")
 	private String profilePicture;
@@ -72,15 +83,15 @@ public class InstagramUser extends BaseEntity implements Serializable {
 	/**
 	 * @return the instragramId
 	 */
-	public Long getInstragramId() {
-		return instragramId;
+	public Long getInstagramId() {
+		return instagramId;
 	}
 
 	/**
 	 * @param instragramId the instragramId to set
 	 */
-	public void setInstragramId(Long instragramId) {
-		this.instragramId = instragramId;
+	public void setInstagramId(Long instagramId) {
+		this.instagramId = instagramId;
 	}
 
 	/**

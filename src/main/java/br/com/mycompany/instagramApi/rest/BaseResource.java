@@ -20,15 +20,23 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+import br.com.mycompany.instagramApi.enums.ContentTypeEnum;
+
 public abstract class BaseResource {
 	
-	protected final String APPLICATION_JSON = "application/json";
 	
-	@Value(value = "${access_token}")
-	private String accessToken;
-	
+
 	@Autowired
 	private Gson gson;
+	
+	@Value(value = "${message.not.found}")
+	protected String messageNotFound;
+	
+	@Value(value = "${default.error.message}")
+	protected String defaultErrorMessage;
+	
+	protected static final Integer EMPTY_REQUEST = 500;
+	protected static final Integer ERROR_REQUEST = 404;
 
 	/**
 	 * @author marcel.costa
@@ -125,7 +133,26 @@ public abstract class BaseResource {
 		
 		WebResource webResource = client.resource( URL );
 		
-		ClientResponse response = webResource.accept( APPLICATION_JSON ).get(ClientResponse.class);
+		ClientResponse response = webResource.accept( ContentTypeEnum.JSON_CONTENT_TYPE.getName() ).get(ClientResponse.class);
+
+		if (response.getStatus() != 200) {
+		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+		}
+		
+		return response.getEntity(String.class);
+	}
+	
+	/**
+	 * @author marcel.costa
+	 * This function invokes a URL as a json content type and returns its body  
+	 * return String
+	 * */
+	protected String getUrl(String URL, ContentTypeEnum contentTypeEnum) {
+		Client client = Client.create();
+		
+		WebResource webResource = client.resource( URL );
+		
+		ClientResponse response = webResource.accept( contentTypeEnum.getName() ).get(ClientResponse.class);
 
 		if (response.getStatus() != 200) {
 		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
@@ -149,14 +176,33 @@ public abstract class BaseResource {
 			return responseError( e.getMessage() );
 		}		
 	}
+	
+	/**
+	 * @author marcel.costa
+	 * This function returns a json string when not found request API occurs
+	 * @return
+	 */
+	protected String getNotFoundRequest() {
+		String output = "{"
+				+ "			\"code\":"    + EMPTY_REQUEST
+				+ "			\"message\":" + messageNotFound
+				+ "		 }";
+		
+		return output;
+	}
 
 	/**
-	 * @author Marcel
-	 * This function returns the access token from the Instagram API
-	 * @return String
+	 * @author marcel.costa
+	 * This function returns a json string when a RuntimeException occur
+	 * @return
 	 */
-	protected String getAccessToken() {
-		return this.accessToken;
+	public String getDefaultErrorMessage() {
+		String output = "{"
+				+ "			\"code\":"    + ERROR_REQUEST
+				+ "			\"message\":" + defaultErrorMessage
+				+ "		 }";
+		
+		return output;
 	}
 	
 }

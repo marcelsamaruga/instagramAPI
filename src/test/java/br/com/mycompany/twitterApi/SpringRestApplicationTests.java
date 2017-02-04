@@ -2,7 +2,7 @@ package br.com.mycompany.twitterApi;
 
 import org.junit.Test;
 
-import br.com.mycompany.instagramApi.service.InstagramLogService;
+import br.com.mycompany.instagramApi.service.InstagramUserService;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@SpringApplicationConfiguration(classes = Application.class)
@@ -10,7 +10,7 @@ import br.com.mycompany.instagramApi.service.InstagramLogService;
 public class SpringRestApplicationTests {
 
 //	@MockBean
-    private InstagramLogService service;
+    private InstagramUserService service;
 	
 	@Test
 	public void contextLoads() {

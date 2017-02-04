@@ -21,7 +21,15 @@ public class InstagramDataInfoDTO {
 	private List<String> tags;
 	private String type;
 	private InstagramLocationInfoDTO location;
-	private InstragramCommentsInfoDTO comments;
+	private InstragramCountsInfoDTO comments;
+	private InstragramCountsInfoDTO likes;
+	private InstagramCountInfoDTO counts;
+	private String created_time;
+	private String link;
+	private InstagramCaptionInfoDTO caption;
+	private String filter;
+	private InstragramUserInfoDTO user;
+	private InstagramImageInfoDTO images;
 	/**
 	 * @return the bio
 	 */
@@ -145,15 +153,110 @@ public class InstagramDataInfoDTO {
 	/**
 	 * @return the comments
 	 */
-	public InstragramCommentsInfoDTO getComments() {
+	public InstragramCountsInfoDTO getComments() {
 		return comments;
 	}
 	/**
 	 * @param comments the comments to set
 	 */
-	public void setComments(InstragramCommentsInfoDTO comments) {
+	public void setComments(InstragramCountsInfoDTO comments) {
 		this.comments = comments;
 	}
+	/**
+	 * @return the likes
+	 */
+	public InstragramCountsInfoDTO getLikes() {
+		return likes;
+	}
+	/**
+	 * @param likes the likes to set
+	 */
+	public void setLikes(InstragramCountsInfoDTO likes) {
+		this.likes = likes;
+	}
+	/**
+	 * @return the counts
+	 */
+	public InstagramCountInfoDTO getCounts() {
+		return counts;
+	}
+	/**
+	 * @param counts the counts to set
+	 */
+	public void setCounts(InstagramCountInfoDTO counts) {
+		this.counts = counts;
+	}
+	/**
+	 * @return the created_time
+	 */
+	public String getCreated_time() {
+		return created_time;
+	}
+	/**
+	 * @param created_time the created_time to set
+	 */
+	public void setCreated_time(String created_time) {
+		this.created_time = created_time;
+	}
+	/**
+	 * @return the link
+	 */
+	public String getLink() {
+		return link;
+	}
+	/**
+	 * @param link the link to set
+	 */
+	public void setLink(String link) {
+		this.link = link;
+	}
+	/**
+	 * @return the caption
+	 */
+	public InstagramCaptionInfoDTO getCaption() {
+		return caption;
+	}
+	/**
+	 * @param caption the caption to set
+	 */
+	public void setCaption(InstagramCaptionInfoDTO caption) {
+		this.caption = caption;
+	}
+	/**
+	 * @return the filter
+	 */
+	public String getFilter() {
+		return filter;
+	}
+	/**
+	 * @param filter the filter to set
+	 */
+	public void setFilter(String filter) {
+		this.filter = filter;
+	}
+	/**
+	 * @return the user
+	 */
+	public InstragramUserInfoDTO getUser() {
+		return user;
+	}
+	/**
+	 * @param user the user to set
+	 */
+	public void setUser(InstragramUserInfoDTO user) {
+		this.user = user;
+	}
+	/**
+	 * @return the images
+	 */
+	public InstagramImageInfoDTO getImages() {
+		return images;
+	}
+	/**
+	 * @param images the images to set
+	 */
+	public void setImages(InstagramImageInfoDTO images) {
+		this.images = images;
+	}
 		
-	
 }
