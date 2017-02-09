@@ -7,18 +7,13 @@ package br.com.mycompany.instagramApi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.mycompany.instagramApi.entity.InstagramMedia;
+import br.com.mycompany.instagramApi.entity.InstagramStatisticType;
 
 /**
  * @author Marcel
  *
  */
-public interface InstagramMediaRepository extends JpaRepository<InstagramMedia, Long> {
+public interface InstagramStatisticTypeRepository extends JpaRepository<InstagramStatisticType, Long> {
 
-	/**
-	 * @param idPost
-	 * @return
-	 */
-	public InstagramMedia findByIdPost(String idPost);
 
 }

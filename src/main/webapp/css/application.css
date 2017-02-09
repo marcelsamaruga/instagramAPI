@@ -1,0 +1,17 @@
+html, body, input, select, textarea { font-size: 1.05em; }
+			
+/* input.ng-invalid */
+#inputStyle.ng-invalid { border-color: #ff0000; }			
+#inputStyle.ng-valid { border-color: green; }
+#inputStyle2.ng-empty { background-color: #ff0000; }			
+#inputStyle2.ng-valid { background-color: ; }
+th{cursor:pointer;}
+.sortorder:after { content: '\25b2';   // BLACK UP-POINTING TRIANGLE}
+.sortorder.reverse:after { content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE}
+
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}

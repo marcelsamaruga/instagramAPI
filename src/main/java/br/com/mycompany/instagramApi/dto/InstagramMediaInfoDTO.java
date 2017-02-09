@@ -9,7 +9,7 @@ import java.util.List;
  * @author Marcel
  *
  */
-public class InstragramMediaInfoDTO {
+public class InstagramMediaInfoDTO {
 	
 	private InstagramMetaInfoDTO meta;
 	private List<InstagramDataInfoDTO> data;

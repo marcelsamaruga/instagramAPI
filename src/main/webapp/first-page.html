@@ -1,0 +1,119 @@
+	
+<form name="myForm">
+		
+	<div style="margin-top:20px;">
+
+		<!-- output values in AngularJS using {{}} -->
+		<!-- binding html elements -->
+		<h4>Bind html element</h4>
+		<p>
+			<!-- directive ng-model binds the input element to the angular controller (using $scope function) -->
+			Name: <input type="text" ng-model="firstName" autofocus>
+			Last Name: <input type="text" ng-model="lastName">
+			<label>Full Name: {{firstName + " " + lastName}}</label>
+		</p>
+			
+		<hr/>
+				
+		<!-- String functions -->
+		<h4>String functions (filter)</h4>
+		<p>
+			Twitter account: <input type="text" ng-model="twitterAccount">
+			<label>{{ twitterAccountLowerCase(twitterAccount) }}</label> (prints in lowercase)
+		</p>
+		
+		<hr/>
+		
+		<!-- Validation (ng-class ng-if) -->
+		<h4>Validation (ng-class ng-if)</h4>
+		<div>
+			<label>Type a 5 letters word</label>
+			<input type="text" ng-model="inputHandle" />
+		</div>
+				
+		<!-- ng-class may expect a json object: {'name':'value'} -->
+		<div class="alert" ng-class="{ 'alert-warning': inputHandle.length < characters, 'alert-danger': inputHandle.length > characters }" 
+						   ng-if="inputHandle.length !== characters">
+		
+			<div ng-show="inputHandle.length < characters">
+				{{ rules[0].ruleName }}
+			</div>
+			<div ng-show="inputHandle.length > characters">
+				{{ rules[1].ruleName }}
+			</div>                    
+		</div>
+				
+		<hr />
+		
+		<h4>Validation (input elements)</h4>
+		<p>
+			Email:
+			<input type="email" name="inputEmail" ng-model="inputEmail">
+			<span ng-show="myForm.inputEmail.$error.email">Not a valid e-mail address</span>					
+		</p>
+		
+		<p>
+			Style for invalid values:
+			Border Color for required value
+			<input type="text" id="inputStyle" ng-model="inputStyle" required> 
+			
+			Background-color for empty values
+			<input type="text" id="inputStyle2" ng-model="inputStyle2"> 
+			
+			<small>Check it on the style page header</small>
+		</p>
+				
+		<hr />
+			
+		<!-- Repeat -->
+		<h4>Repeat</h4>
+		<div ng-repeat='rule in rules'>
+			<ul>
+				<li>{{ rule.codeError + ': ' + rule.ruleName }}</li>
+			</ul>
+		</div>
+		
+		<hr />
+			
+		<!-- Repeat -->
+		<div ng-repeat='rule in rules'>
+			<ul>
+				<li>{{ rule.codeError + ': ' + rule.ruleName }}</li>
+			</ul>
+		</div>
+		
+		<hr /><br/>
+		
+		<h4>Repeat using table and filters</h4>
+		Type any column value: <input ng-model='searchText.$' /> <br />
+		Type rule name: <input ng-model='searchText.ruleName' /> <br />
+		Type code error: <input ng-model='searchText.codeError' /> <br /><br />
+		<table>
+			<thead>
+				<tr>
+					<th ng-click="orderColumn('codeError')">Order by codeError</th>
+					<th ng-click="orderColumn('ruleName')">lowercase</th>
+					<th ng-click="orderColumn('ruleName')">UPPERCASE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat='rule in rules | filter:searchText | orderBy:orderColumnValue:reverse '>
+					<td>{{ rule.codeError }}</td>
+					<td>{{ rule.ruleName | lowercase }}</td>
+					<td>{{ rule.ruleName | uppercase }}</td>
+				</tr>
+			<tbody/>
+		</table>
+		
+		<br />
+		<hr />
+		
+		<h4>Filters</h4>
+		<input ng-model='txtValue' />
+		<p>Uppercase: {{ txtValue | uppercase }}</p>
+		<p>Lowercase: {{ txtValue | lowercase }}</p>
+		<p>Currency:  {{ txtValue | currency:"USD$":2 }}</p>
+		
+		
+	</div>			
+</form>	

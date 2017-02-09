@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="myApp">
+    <head>
+        <title>AngularJS</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap lib-->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/application.css" />
+        
+        <script src="js/vendor/jquery.min.js"></script>
+		<script src="js/vendor/bootstrap.min.js"></script>
+        
+		<!-- load angular lib -->
+        <script src="js/vendor/angular.min.js"></script>
+		<script src="js/vendor/angular-route.min.js"></script>
+		
+		<!-- load the app controllers -->
+		<script src="js/app.js"></script>
+		<script src="js/first-page-controller.js"></script>
+		<script src="js/services-controller.js"></script>
+		<script src="js/forms-controller.js"></script>
+		<script src="js/custom-directives.js"></script>
+    </head>
+	
+    <body>
+	
+		<header>
+			<nav class="navbar navbar-default">
+			<div class="container">
+				
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#/">AngularJS</a>
+				</div>
+				
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#/"><i class="fa fa-home"></i>Regular Functions</a></li>
+                    <li><a href="#/services"><i></i>Services</a></li>
+					<li><a href="#/forms"><i></i>Forms</a></li>
+					<li><a href="#/customDirectives"><i></i>Custom Directives</a></li>
+				</ul>
+				
+			</div>
+			</nav>
+		</header>
+		
+		
+		<div class="container">
+            <div ng-view></div>            
+		</div>
+		
+    </body>
+</html>

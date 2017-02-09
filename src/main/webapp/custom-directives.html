@@ -1,0 +1,46 @@
+	
+<form name="myForm">
+		
+	<div style="margin-top:20px;">
+
+		<!-- AngularJS -->
+		<h4>Custom Directives</h4>
+		<p> 
+			As an attribute
+			<div my-custom-directive></div>
+		</p>
+			
+		<hr/>
+		
+		<p> 
+			As an element
+			<my-custom-directive></my-custom-directive>
+		</p>
+			
+		<hr/>
+
+		<h4>Using the scope from the Custom Directive Controller</h4>
+		<my-custom-directive-obj 
+			my-object="obj"
+			my-text="{{ textValue }}"
+			my-function="myFunction(textValue)"
+		></my-custom-directive-obj>
+		
+		<hr/>
+		
+		<h4>Using the scope from the Custom Directive Controller - Repeated List</h4>
+		<ul class="list-group">
+			<my-custom-directive-obj-list
+				ng-repeat="color in listColor"
+				color="color"
+			></my-custom-directive-obj>
+		</ul>
+		
+		<hr/>
+		
+		<h4>Transclude</h4>
+		<hr/>
+		
+		
+	</div>			
+</form>	

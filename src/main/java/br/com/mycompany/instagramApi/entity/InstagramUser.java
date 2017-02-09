@@ -5,9 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="instagram_user")
+@Table(name="instagram_user", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "USERNAME")
+		}
+)
 public class InstagramUser extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -3985428490705878499L;

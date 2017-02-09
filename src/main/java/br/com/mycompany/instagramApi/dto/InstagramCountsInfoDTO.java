@@ -7,7 +7,7 @@ package br.com.mycompany.instagramApi.dto;
  * @author Marcel
  *
  */
-public class InstragramCountsInfoDTO {
+public class InstagramCountsInfoDTO {
 	
 	private Long count;
 

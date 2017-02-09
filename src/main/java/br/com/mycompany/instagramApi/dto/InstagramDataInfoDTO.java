@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 public class InstagramDataInfoDTO {
-
+	
 	private String bio;
 	private String website;
 	private String full_name;
@@ -21,14 +21,14 @@ public class InstagramDataInfoDTO {
 	private List<String> tags;
 	private String type;
 	private InstagramLocationInfoDTO location;
-	private InstragramCountsInfoDTO comments;
-	private InstragramCountsInfoDTO likes;
+	private InstagramCountsInfoDTO comments;
+	private InstagramCountsInfoDTO likes;
 	private InstagramCountInfoDTO counts;
 	private String created_time;
 	private String link;
 	private InstagramCaptionInfoDTO caption;
 	private String filter;
-	private InstragramUserInfoDTO user;
+	private InstagramUserInfoDTO user;
 	private InstagramImageInfoDTO images;
 	/**
 	 * @return the bio
@@ -153,25 +153,25 @@ public class InstagramDataInfoDTO {
 	/**
 	 * @return the comments
 	 */
-	public InstragramCountsInfoDTO getComments() {
+	public InstagramCountsInfoDTO getComments() {
 		return comments;
 	}
 	/**
 	 * @param comments the comments to set
 	 */
-	public void setComments(InstragramCountsInfoDTO comments) {
+	public void setComments(InstagramCountsInfoDTO comments) {
 		this.comments = comments;
 	}
 	/**
 	 * @return the likes
 	 */
-	public InstragramCountsInfoDTO getLikes() {
+	public InstagramCountsInfoDTO getLikes() {
 		return likes;
 	}
 	/**
 	 * @param likes the likes to set
 	 */
-	public void setLikes(InstragramCountsInfoDTO likes) {
+	public void setLikes(InstagramCountsInfoDTO likes) {
 		this.likes = likes;
 	}
 	/**
@@ -237,13 +237,13 @@ public class InstagramDataInfoDTO {
 	/**
 	 * @return the user
 	 */
-	public InstragramUserInfoDTO getUser() {
+	public InstagramUserInfoDTO getUser() {
 		return user;
 	}
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(InstragramUserInfoDTO user) {
+	public void setUser(InstagramUserInfoDTO user) {
 		this.user = user;
 	}
 	/**

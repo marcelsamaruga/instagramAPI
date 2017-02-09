@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -20,11 +21,12 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-import br.com.mycompany.instagramApi.enums.ContentTypeEnum;
+import br.com.mycompany.instagramApi.enums.ApplicationContentTypeEnum;
+import br.com.mycompany.instagramApi.exception.ErrorConnectionException;
 
 public abstract class BaseResource {
 	
-	
+	final static Logger logger = Logger.getLogger(BaseResource.class);
 
 	@Autowired
 	private Gson gson;
@@ -32,10 +34,17 @@ public abstract class BaseResource {
 	@Value(value = "${message.not.found}")
 	protected String messageNotFound;
 	
+	@Value(value = "${error.http.connection}")
+	protected String messageErrorConection;
+	
 	@Value(value = "${default.error.message}")
 	protected String defaultErrorMessage;
 	
+	@Value(value = "${default.invalid.params}")
+	protected String defaultInvalidParams;
+	
 	protected static final Integer EMPTY_REQUEST = 500;
+	protected static final Integer EMPTY_PARAMS  = 501;
 	protected static final Integer ERROR_REQUEST = 404;
 
 	/**
@@ -133,10 +142,11 @@ public abstract class BaseResource {
 		
 		WebResource webResource = client.resource( URL );
 		
-		ClientResponse response = webResource.accept( ContentTypeEnum.JSON_CONTENT_TYPE.getName() ).get(ClientResponse.class);
+		ClientResponse response = webResource.accept( ApplicationContentTypeEnum.JSON_CONTENT_TYPE.getName() ).get(ClientResponse.class);
 
 		if (response.getStatus() != 200) {
-		   throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
+			logger.error( messageErrorConection + response.getStatus() );
+		   throw new ErrorConnectionException( messageErrorConection + response.getStatus() );
 		}
 		
 		return response.getEntity(String.class);
@@ -147,7 +157,7 @@ public abstract class BaseResource {
 	 * This function invokes a URL as a json content type and returns its body  
 	 * return String
 	 * */
-	protected String getUrl(String URL, ContentTypeEnum contentTypeEnum) {
+	protected String getUrl(String URL, ApplicationContentTypeEnum contentTypeEnum) {
 		Client client = Client.create();
 		
 		WebResource webResource = client.resource( URL );
@@ -175,6 +185,20 @@ public abstract class BaseResource {
 		} catch (Exception e) {
 			return responseError( e.getMessage() );
 		}		
+	}
+	
+	/**
+	 * @author marcel.costa
+	 * This function returns a json string when not found request API occurs
+	 * @return
+	 */
+	protected String getInvalidParamsRequest() {
+		String output = "{"
+				+ "			\"code\":"    + EMPTY_PARAMS
+				+ "			\"message\":" + defaultInvalidParams
+				+ "		 }";
+		
+		return output;
 	}
 	
 	/**

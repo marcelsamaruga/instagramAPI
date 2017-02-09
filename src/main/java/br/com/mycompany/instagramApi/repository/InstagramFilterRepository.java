@@ -7,18 +7,19 @@ package br.com.mycompany.instagramApi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.mycompany.instagramApi.entity.InstagramMedia;
+import br.com.mycompany.instagramApi.entity.InstagramFilter;
 
 /**
  * @author Marcel
  *
  */
-public interface InstagramMediaRepository extends JpaRepository<InstagramMedia, Long> {
+public interface InstagramFilterRepository extends JpaRepository<InstagramFilter, Long> {
 
 	/**
-	 * @param idPost
+	 * @param name
 	 * @return
 	 */
-	public InstagramMedia findByIdPost(String idPost);
+	public InstagramFilter findByName(String name);
+
 
 }

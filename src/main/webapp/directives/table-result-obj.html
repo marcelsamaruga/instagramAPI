@@ -1,0 +1,22 @@
+<div>
+	<!-- the injected page should contain one root element -->
+	<h3>Trafficking values from different scopes (using &, @ or =) - Custom Directive Controller</h3>
+	<ul class="list-group">
+	  <li class="list-group-item">
+		Text Values (@): 
+		{{ myText }}
+	  </li>
+	  
+	  <li class="list-group-item">
+		Object (=): 
+		{{ myObject.name }}
+	  </li>
+	  
+	  <li class="list-group-item">
+		Invoking function (&): 
+		<!-- the name of the parameters must be the same as indicated on the main html (custom-directive.html) -->
+		{{ myFunction({ anyValue: myText }) }}
+	  </li>
+	</ul>
+	
+<div>

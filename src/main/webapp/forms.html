@@ -1,0 +1,33 @@
+<div style="margin-top:20px;">
+
+		<!-- output values in AngularJS using {{}} -->
+		<!-- binding html elements -->
+		<h4>Select (ng-options)</h4>
+		
+		<hr/>
+		
+		<p><button ng-disabled="mySwitch" ng-click="disableFunc()">ng-disabled</button></p> {{ mySwitch }}
+		
+		<hr/>
+		
+		<form>
+			Check to show a header:
+			<input type="checkbox" ng-model="myVar" />
+		</form>
+
+		<h1 ng-show="myVar">My Header</h1>
+		
+		<hr/>
+		
+				Pick a topic:
+		<input type="radio" ng-model="myVar" value="dogs">Dogs
+		<input type="radio" ng-model="myVar" value="tuts">Tutorials
+		<input type="radio" ng-model="myVar" value="cars">Cars
+		
+		<hr/>
+		
+		<h4>Input/output from another controller (watch)
+		<input type="text" ng-model="myServiceName" />
+		<hr/>
+		
+</div>

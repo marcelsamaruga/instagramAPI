@@ -1,0 +1,38 @@
+<div style="margin-top:20px;">
+
+		<!-- output values in AngularJS using {{}} -->
+		<!-- binding html elements -->
+		<h4>Location</h4>
+		<p>absUrl: {{ locationAbsUrl }} </p>
+		<p>url: {{ url }} </p>
+		<p>host: {{ host }} </p>
+		<p>port: {{ port }} </p>
+		<p>path: {{ path }} </p>
+		<p>protocol: {{ protocol }} </p>
+		
+		<hr/>
+		
+		<h4>Retrieve data using http service</h4>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Country</th>
+			</tr>
+			<tbody>
+				<tr ng-repeat="x in names">
+					<td>{{ $index + 1 }}</td>
+					<td>{{ x.Name }}</td>
+					<td>{{ x.Country }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<hr/>
+		
+		<h4>Creating own service</h4>
+		<input ng-model='myServiceName' type="text" />
+		{{ myServiceName }}
+		
+		<hr/>
+		
+</div>

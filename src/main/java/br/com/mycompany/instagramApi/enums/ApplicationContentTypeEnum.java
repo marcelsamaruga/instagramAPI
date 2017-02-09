@@ -7,7 +7,7 @@ package br.com.mycompany.instagramApi.enums;
  * @author Marcel
  *
  */
-public enum ContentTypeEnum {
+public enum ApplicationContentTypeEnum {
 	
 	JSON_CONTENT_TYPE("application/json"),
 	XML_CONTENT_TYPE("application/xml"),
@@ -30,7 +30,7 @@ public enum ContentTypeEnum {
 		this.name = name;
 	}
 	
-	ContentTypeEnum(String name) {
+	ApplicationContentTypeEnum(String name) {
 		this.name = name;
 	}
 

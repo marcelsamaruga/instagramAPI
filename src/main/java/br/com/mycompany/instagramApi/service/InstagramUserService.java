@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.mycompany.instagramApi.dto.InstagramDataInfoDTO;
-import br.com.mycompany.instagramApi.dto.InstragramUserInfoDTO;
+import br.com.mycompany.instagramApi.dto.InstagramUserInfoDTO;
 import br.com.mycompany.instagramApi.entity.InstagramUser;
 import br.com.mycompany.instagramApi.repository.InstagramUserRepository;
 
@@ -34,7 +34,7 @@ public class InstagramUserService extends BaseService<InstagramUser> {
 	 * @param instaUserInfo 
 	 * @return
 	 */
-	public InstagramUser convertDTOToEntity(InstragramUserInfoDTO instaUserInfo) {
+	public InstagramUser convertDTOToEntity(InstagramUserInfoDTO instaUserInfo) {
 		
 		InstagramDataInfoDTO data = instaUserInfo.getData();
 		
@@ -51,9 +51,16 @@ public class InstagramUserService extends BaseService<InstagramUser> {
 	 * @param username
 	 * @return
 	 */
-	public boolean userExists(String username) {
-		InstagramUser user = repository.findByUsername( username );
-		return user != null ? true : false;
+	public InstagramUser findByUsername(String username) {
+		return repository.findByUsername( username );
+	}
+
+	/**
+	 * @param user
+	 * @return
+	 */
+	public InstagramUserInfoDTO convertEntityToDTO(InstagramUser user) {
+		return new InstagramUserInfoDTO( user.getFullname(), user.getUsername(), user.getProfilePicture(), user.getInstagramId() );
 	}
 
 }

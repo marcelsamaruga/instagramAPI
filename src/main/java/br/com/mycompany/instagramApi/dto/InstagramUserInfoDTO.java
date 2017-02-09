@@ -7,7 +7,15 @@ package br.com.mycompany.instagramApi.dto;
  * @author Marcel
  *
  */
-public class InstragramUserInfoDTO {
+public class InstagramUserInfoDTO {
+	
+	public InstagramUserInfoDTO(String full_name, String username, String profile_picture, Long id) {
+		this.full_name = full_name;
+		this.username = username;
+		this.profile_picture = profile_picture;
+		this.id = id;
+	}
+
 	
 	private InstagramMetaInfoDTO meta;
 	private InstagramDataInfoDTO data;

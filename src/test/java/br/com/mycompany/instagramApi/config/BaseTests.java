@@ -1,7 +1,7 @@
 /**
  * 
  */
-package br.com.mycompany.twitterApi.config;
+package br.com.mycompany.instagramApi.config;
 
 
 import java.io.FileInputStream;
