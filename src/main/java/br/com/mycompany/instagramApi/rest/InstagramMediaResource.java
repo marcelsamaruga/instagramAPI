@@ -7,6 +7,9 @@ package br.com.mycompany.instagramApi.rest;
 
 import static br.com.mycompany.instagramApi.util.ConstantsUtil.REST_DOMAIN;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +27,11 @@ import br.com.mycompany.instagramApi.entity.InstagramMedia;
 import br.com.mycompany.instagramApi.entity.InstagramMediaStatistic;
 import br.com.mycompany.instagramApi.enums.InstagramStatisticTypeEnum;
 import br.com.mycompany.instagramApi.exception.ErrorConnectionException;
-import br.com.mycompany.instagramApi.service.InstagramFilterService;
 import br.com.mycompany.instagramApi.service.InstagramMediaService;
 import br.com.mycompany.instagramApi.service.InstagramMediaStatisticService;
 import br.com.mycompany.instagramApi.service.InstagramStatisticTypeService;
 import br.com.mycompany.instagramApi.service.InstagramUserService;
+import jersey.repackaged.com.google.common.collect.Lists;
 
 @RestController
 @RequestMapping( REST_DOMAIN + "/media/")
@@ -62,8 +65,8 @@ public class InstagramMediaResource extends InstagramBaseResource {
 	 * description: function to get media information of the user
 	 * @throws ParseException 
 	 * */	
-	@RequestMapping(value = "getMedia/{id}", method=RequestMethod.GET )
-	public @ResponseBody String getMedia(@PathVariable String id) {
+	@RequestMapping(value = "saveMedia/{id}", method=RequestMethod.GET )
+	public @ResponseBody String saveMedia(@PathVariable String id) {
 		String URL = getMediaByUserId(id);		
 		InstagramMediaInfoDTO instaMediaInfo;
 		
@@ -108,7 +111,7 @@ public class InstagramMediaResource extends InstagramBaseResource {
 				// *** *** ***
 				
 				// populates json return
-				userMediaDTO.setUser( instagramUserService.convertEntityToDTO(instagramMediaEntity.getUser()) );
+				//userMediaDTO.setUser( instagramUserService.convertEntityToDTO(instagramMediaEntity.getUser()) );
 			}
 			
 		// connection error exception
@@ -122,6 +125,38 @@ public class InstagramMediaResource extends InstagramBaseResource {
 		}
 		
 		return gson.toJson( instaMediaInfo.getData() );
+	}
+	
+	
+	/**
+	 * @author marcel.costa
+	 * @param queryValue: value to search on the instagram
+	 * @param username: instagram account
+	 * @return json
+	 * description: function to get media information of the user
+	 * @throws ParseException 
+	 * */	
+	@RequestMapping(value = "getMedia/{username}", method=RequestMethod.GET )
+	public @ResponseBody String getMedia(@PathVariable String username) {
+		
+		if ( StringUtils.isBlank(username) ) {
+			logger.error( super.getNotFoundRequest() );
+			return super.getNotFoundRequest();
+		}
+		
+		List<InstagramMedia> instagramMedia = instagramMediaService.findByUsername( username );
+		
+		List<InstagramDataInfoDTO> listInstagramDataInfoDTO = Lists.newArrayList();
+		
+		for (InstagramMedia media : instagramMedia) {
+			InstagramMediaInfoDTO instaMediaInfo = instagramMediaService.convertEntityToDTO(media);
+			
+			for (InstagramDataInfoDTO dataInfoDTO : instaMediaInfo.getData()) {
+				listInstagramDataInfoDTO.add(dataInfoDTO);
+			}
+		}
+		
+		return gson.toJson( listInstagramDataInfoDTO );
 	}
 	
 	

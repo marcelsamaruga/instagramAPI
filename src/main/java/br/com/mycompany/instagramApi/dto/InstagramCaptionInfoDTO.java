@@ -9,6 +9,12 @@ package br.com.mycompany.instagramApi.dto;
  */
 public class InstagramCaptionInfoDTO {
 
+	public InstagramCaptionInfoDTO() {}
+	
+	public InstagramCaptionInfoDTO(String text) {
+		this.text = text;
+	}
+	
 	private String created_time;
 	private String text;
 	private String id;

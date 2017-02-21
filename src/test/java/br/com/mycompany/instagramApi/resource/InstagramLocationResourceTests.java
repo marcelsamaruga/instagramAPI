@@ -32,8 +32,8 @@ public class InstagramLocationResourceTests {
 	//@InjectMocks
 	//private InstagramUserRepository repository;
 	
-	@InjectMocks
-	private InstagramUserResource resource;
+	//@InjectMocks
+	//private InstagramUserResource resource;
 	
 	@Inject
     private ApplicationContext ctx;
@@ -68,11 +68,11 @@ public class InstagramLocationResourceTests {
 	public void get_instagram_user_by_username() throws RemoteException, ServiceException {
 		setup();
 		
-		String response = resource.getUserByUsername("marcelsamaruga");
+		//String response = resource.getUserByUsername("marcelsamaruga");
 		
 		//response.ok().build().readEntity(Employee.class);
 		//assertEquals( response.getStatus(), Status.OK.getStatusCode() );
-		System.out.println(response);
+		//System.out.println(response);
 	}
 	
 	

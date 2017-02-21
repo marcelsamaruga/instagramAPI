@@ -8,6 +8,15 @@ package br.com.mycompany.instagramApi.dto;
  *
  */
 public class InstagramLocationInfoDTO {
+	
+	public InstagramLocationInfoDTO() {}
+	
+	public InstagramLocationInfoDTO(String name, String latitude, String longitude, Long id) {
+		this.name = name;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.id = id;
+	}
 
 	private String latitude;
 	private String name;
