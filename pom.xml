@@ -22,52 +22,7 @@
     </properties>
 	
 	
-	<!-- BUILD -->
-	<build>
-        <finalName>instagramAPI</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <inherited>true</inherited>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            
-            <plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-            
-            
-            <plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
-				<configuration>
-					<port>8081</port>
-					<path>/myrestapp</path>
-					<useTestClasspath>false</useTestClasspath>
-					<contextFile>${basedir}/etc/tomcat/context.xml</contextFile>
-					<systemProperties>
-						<wsServer>TOMCAT</wsServer>
-					</systemProperties>
-				</configuration>
-				
-				<dependencies>
-					<dependency>
-						<groupId>org.hibernate.javax.persistence</groupId>
-						<artifactId>hibernate-jpa-2.0-api</artifactId>
-						<version>1.0.1.Final</version>
-					</dependency>				
-				</dependencies>				
-			</plugin>
-            
-        </plugins>
-    </build>
+	
 	
 
 	<dependencyManagement>
